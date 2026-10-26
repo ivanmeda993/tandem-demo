@@ -1,8 +1,8 @@
 // The page: draws the shelf and turns the person's clicks into store calls. The rules live in store.js.
-import { FILTERS, SORTS, addBook, filterBooks, removeBook, sortBooks, summary, toggleRead } from './store.js'
+import { FILTERS, SORTS, addBook, filterBooks, removeBook, searchBooks, sortBooks, summary, toggleRead } from './store.js'
 import { loadBooks, saveBooks } from './storage.js'
 
-const state = { books: loadBooks(localStorage), filter: 'all', sort: 'added', error: '' }
+const state = { books: loadBooks(localStorage), filter: 'all', sort: 'added', query: '', error: '' }
 
 function set(change) {
   Object.assign(state, change)
@@ -47,7 +47,8 @@ function controls() {
         el('button', { className: value === current ? 'on' : '', onclick: () => set({ [key]: value }) }, value),
       ),
     )
-  return el('div', { className: 'controls' }, choose(FILTERS, state.filter, 'filter'), choose(SORTS, state.sort, 'sort'))
+  const search = el('input', { type: 'search', placeholder: 'Search', value: state.query, oninput: event => set({ query: event.target.value }) })
+  return el('div', { className: 'controls' }, search, choose(FILTERS, state.filter, 'filter'), choose(SORTS, state.sort, 'sort'))
 }
 
 function row(book) {
@@ -62,7 +63,7 @@ function row(book) {
 }
 
 function render() {
-  const shown = sortBooks(filterBooks(state.books, state.filter), state.sort)
+  const shown = sortBooks(searchBooks(filterBooks(state.books, state.filter), state.query), state.sort)
   const { total, read } = summary(state.books)
   document.querySelector('#app').replaceChildren(
     ...[

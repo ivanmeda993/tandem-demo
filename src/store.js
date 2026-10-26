@@ -51,6 +51,17 @@ export function sortBooks(books, by) {
   return sorted
 }
 
+/**
+ * The books whose title or author contains the query.
+ * @param {Book[]} books
+ * @param {string} query
+ * @returns {Book[]}
+ */
+export function searchBooks(books, query) {
+  if (!query) return books
+  return books.filter(book => book.title.includes(query) || book.author.includes(query))
+}
+
 /** @param {Book[]} books @returns {{ total: number, read: number }} */
 export function summary(books) {
   return { total: books.length, read: books.filter(book => book.read).length }

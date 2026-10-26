@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { addBook, filterBooks, removeBook, sortBooks, summary, toggleRead } from '../src/store.js'
+import { addBook, filterBooks, removeBook, searchBooks, sortBooks, summary, toggleRead } from '../src/store.js'
 import { loadBooks, saveBooks } from '../src/storage.js'
 
 const shelf = [
@@ -48,4 +48,8 @@ test('a broken or missing saved shelf loads as empty', () => {
   assert.deepEqual(loadBooks(storage), [])
   assert.deepEqual(loadBooks({ getItem: () => null }), [])
   assert.doesNotThrow(() => saveBooks({ setItem: () => { throw new Error('full') } }, shelf))
+})
+
+test('search finds a book by its title', () => {
+  assert.deepEqual(searchBooks(shelf, 'Dune').map(book => book.id), ['a'])
 })
