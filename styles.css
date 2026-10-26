@@ -1,0 +1,89 @@
+/* Every color and size comes from these tokens; a theme changes the tokens, not the rules below. */
+:root {
+  --bg: #fbfaf7;
+  --text: #1f1d1a;
+  --muted: #6b665e;
+  --line: #e4e0d8;
+  --accent: #0f6e56;
+  --danger: #b3261e;
+  --radius: 8px;
+  --gap: 12px;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+main {
+  max-width: 560px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+.count,
+.empty,
+.author {
+  color: var(--muted);
+}
+
+.add,
+.controls,
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+.controls {
+  justify-content: space-between;
+  margin: var(--gap) 0;
+}
+
+input,
+button {
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  color: var(--text);
+}
+
+button.on,
+.add button {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+li.read .title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.remove {
+  margin-left: auto;
+  border: none;
+  background: none;
+  color: var(--muted);
+}
+
+.error {
+  color: var(--danger);
+}
