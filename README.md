@@ -50,7 +50,7 @@ Run:
 /tandem orchestrate Add a "Clear read books" button that removes every book marked as read, with a test.
 ```
 
-Answer Claude's setup questions (for a cheap first run: 1 worker, medium effort, workers in the Codex app, simplifier off), review the plan in the panel and approve it. Once Claude approves the task, Tandem merges it into the run's branch `tandem/<run>` on its own; merge that into `main` yourself.
+Answer Claude's setup questions (for a cheap first run: 1 worker, medium effort, workers in the Codex app, simplifier off), review the plan in the panel and approve it. Once Claude approves the task, Tandem merges it into the run's branch on its own: for this goal it is `tandem/add-a-clear-read-books-button-that/result`. Merge that into `main` yourself.
 
 ### 4. Orchestrate: a parallel run (more worker turns)
 
