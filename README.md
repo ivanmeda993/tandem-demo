@@ -13,7 +13,7 @@ npm start    # then open http://localhost:8000
 - **Two vendors check each other.** Claude and Codex are trained differently and miss different things. Tandem has one write and the other review, so a bug one model is blind to has a second chance to be caught.
 - **Each agent in the app you already use.** Claude's messages run in your Codex thread as new turns, so you watch them live in the Codex app, and Codex's answers come straight back into Claude's conversation. There is nothing new to open and no copying between windows.
 - **Parallel work without collisions.** In an orchestrated run, every task gets its own git worktree, branch and Codex thread. Tasks that would change the same files wait for each other, so workers never overwrite one another.
-- **You stay in charge.** Workers start only after you approve the plan, and nothing reaches your branch until you click Merge. Tandem never pushes, and every worker turn counts against a budget only you raise.
+- **You stay in charge.** Workers start only after you approve the plan, and nothing reaches your branch until you merge it: approved work collects on the run's own branch, which you merge into yours yourself. Tandem never pushes, and every worker turn counts against a budget only you raise.
 - **Reviews that hold up.** Codex reviews a pull request, a branch or your uncommitted changes, read-only, against the project's own rules (`AGENTS.md`). Claude checks each finding in the code before you hear of it, and only the findings you pick are posted to GitHub.
 - **It survives long runs.** A run lives on disk, so a Mac restart, a killed process or Claude compacting its conversation does not lose it, and the orchestrator gets the run's state and its own notes back.
 - **Local and on your own plans.** There is no server and no extra account. Everything runs through the official `claude` and `codex` command-line tools, signed in with your own subscriptions.
@@ -50,7 +50,7 @@ Run:
 /tandem orchestrate Add a "Clear read books" button that removes every book marked as read, with a test.
 ```
 
-Answer Claude's setup questions (for a cheap first run: 1 worker, medium effort, workers in the Codex app, simplifier off), review the plan in the panel, approve it, and merge the task when Claude has reviewed it. The work lands on the run's branch `tandem/<run>`; merge that into `main` yourself.
+Answer Claude's setup questions (for a cheap first run: 1 worker, medium effort, workers in the Codex app, simplifier off), review the plan in the panel and approve it. Once Claude approves the task, Tandem merges it into the run's branch `tandem/<run>` on its own; merge that into `main` yourself.
 
 ### 4. Orchestrate: a parallel run (more worker turns)
 
