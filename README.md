@@ -40,15 +40,7 @@ The `feature/search` branch adds a search box, and it has problems a good review
 
 Codex reads the branch in a read-only worktree, Claude checks each finding, and the panel shows them with their priorities.
 
-<details>
-<summary>What the review should find (spoilers)</summary>
-
-- A book with no author breaks the search (`book.author` is `undefined` for books saved before authors existed).
-- The search is case-sensitive, so "dune" does not find "Dune", unlike the rest of the app.
-- The new test only covers the happy path, so it would pass with both bugs in place.
-- The search query is not trimmed, so a trailing space finds nothing.
-
-</details>
+The branch has four problems put there on purpose, and a good review may find more. The answers are not written down here, so Codex cannot read them while it reviews.
 
 ### 3. Orchestrate: a small run (about 3 to 6 worker turns)
 
